@@ -107,61 +107,24 @@ def delete():
     st.session_state.input=st.session_state.input[:-1]
 def add_sin():
     if st.session_state.angle_change=='Degrees':  
-        st.session_state.input+='sin(Deg('   # Add degree sine function
+        st.session_state.input+='sin(Deg('
     else:
-        st.session_state.input+='sin('       # Add radian sine function
+        st.session_state.input+='sin('
 def add_cos():
     if st.session_state.angle_change=='Degrees':
-        st.session_state.input+='cos(Deg('   # Add degree cosine function
+        st.session_state.input+='cos(Deg('
     else:
-        st.session_state.input+='cos('       # Add radian cosine function
+        st.session_state.input+='cos('
 def add_tan():
     if st.session_state.angle_change=='Degrees':
-        st.session_state.input+='tan(Deg('   # Add degree tangent function
+        st.session_state.input+='tan(Deg('
     else:
-        st.session_state.input+='tan('       # Add radian tangent function
+        st.session_state.input+='tan('
 def clear_all():
     st.session_state.pop('input')
     st.session_state.disable_button=False
-def add_pi():
-    st.session_state.input+='π'
-def add_log():
-    st.session_state.input+='log('
-def add_abs():
-    st.session_state.input+='abs('
-def add_factorial():
-    st.session_state.input+='n!('
-def add_fraction():
-    st.session_state.input+='(1/'
 def add_e():
     st.session_state.input+='e'
-
-
-def calculate():
-    # Replace all math operators
-    st.session_state.input=st.session_state.input.replace('×','*')
-    st.session_state.input=st.session_state.input.replace('÷','/')
-    st.session_state.input=st.session_state.input.replace('√(','sqrt(')
-    st.session_state.input=st.session_state.input.replace('^','**')
-    st.session_state.input=st.session_state.input.replace('π','pi')
-    st.session_state.input=st.session_state.input.replace('n!(','factorial(')
-    st.session_state.input=st.session_state.input.replace('%','/100')
-
-    try:
-        st.session_state.input=eval(st.session_state.input)
-        st.session_state.input="%g"%(float(st.session_state.input))
-
-        if st.session_state.fractions:
-            if len(st.session_state.input[st.session_state.input.find('.')+1:])>=5:
-               st.session_state.input="%s"%(Fraction(st.session_state.input).limit_denominator(10))
-            else:
-                st.session_state.input="%s"%(Fraction(st.session_state.input))
-
-    except ZeroDivisionError:
-        st.session_state.input='Math ERROR - Click [AC] to Reset'
-    except:
-        st.session_state.input='Syntax ERROR - Click [AC] to Reset'
-    st.session_state.disable_button=True
 
 
 # STREAMLIT
@@ -254,8 +217,6 @@ def secant_nm(fx, Ximin, Xi, epsilon):
             arrHasil.append([i, Ximin, Xi, fXimin, fXi, Xiplus, f(Xiplus), persen if i > 1 else "-"])
 
             if persen < epsilon:
-                # print()
-                # print(f"Akar ditemukan dengan konvergensi pada iterasi ke {i}: {Xiplus}")
                 break
             
             Ximin = Xi
